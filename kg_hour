@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KG/hr Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f0f0f0;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input[type="number"] {
+      width: 200px;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 20px 40px;
+      font-size: 24px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #output {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>KG/hr Calculator</h1>
+
+  <label for="widths">Widths:</label>
+  <input type="number" id="widths" step="any">
+
+  <label for="gauge">Gauge:</label>
+  <input type="number" id="gauge" step="any">
+
+  <label for="speed">Speed:</label>
+  <input type="number" id="speed" step="any">
+
+  <button onclick="calculate()">Calculate</button>
+
+  <div id="output"></div>
+
+  <script>
+    function calculate() {
+      const widths = parseFloat(document.getElementById('widths').value);
+      const gauge = parseFloat(document.getElementById('gauge').value);
+      const speed = parseFloat(document.getElementById('speed').value);
+
+      if (isNaN(widths) || isNaN(gauge) || isNaN(speed)) {
+        document.getElementById('output').textContent = "Please enter all values.";
+        return;
+      }
+
+      const result = (widths * gauge * speed * 0.91 * 60) / 1000;
+      document.getElementById('output').textContent = `Result: ${result.toFixed(2)} kg/hr`;
+    }
+  </script>
+</body>
+</html>
